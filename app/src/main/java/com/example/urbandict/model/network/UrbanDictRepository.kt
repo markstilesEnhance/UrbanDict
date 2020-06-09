@@ -8,12 +8,9 @@ import com.example.urbandict.model.network.ApiClient.client
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class UrbanDictRepository(context: Context) {
-
-    val api: ApiService = client!!.create(ApiService::class.java)
-
-    var urbanDB = UrbanDictDB.getInstance(context)
+class UrbanDictRepository @Inject constructor(private val urbanDB: UrbanDictDB, private val urbanService: ApiService) {
 
     fun getDictionary(term: String): Single<MutableList<DefinitionItem>> {
         return getLocalDefs(term)
@@ -34,7 +31,7 @@ class UrbanDictRepository(context: Context) {
     }
 
     private fun getRemoteDefs(term: String): Single<MutableList<DefinitionItem>> {
-        return api.getDefinitions(term).map {
+        return urbanService.getDefinitions(term).map {
             it.list
         }
     }

@@ -1,13 +1,15 @@
 package com.example.urbandict.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.urbandict.model.DefinitionItem
 import com.example.urbandict.model.network.UrbanDictRepository
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class MainViewModel(private val repo: UrbanDictRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val repo: UrbanDictRepository): ViewModel() {
 
     sealed class AppState {
         object LOADING: AppState()
@@ -17,6 +19,7 @@ class MainViewModel(private val repo: UrbanDictRepository): ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val stateData = MutableLiveData<AppState>()
+    val sortedStateData = MediatorLiveData<AppState>()
 
     fun getState(): LiveData<AppState> {
         return stateData
@@ -33,18 +36,6 @@ class MainViewModel(private val repo: UrbanDictRepository): ViewModel() {
                     stateData.value = AppState.ERROR(it.message!!)
                 })
         )
-    }
-
-    fun sortUp() {
-        val list: MutableList<DefinitionItem> = (stateData.value as AppState.SUCCESS).defList
-        list.sortedByDescending { it.thumbs_up }
-        stateData.value = AppState.SUCCESS(list)
-    }
-
-    fun sortDown() {
-        val list: MutableList<DefinitionItem> = (stateData.value as AppState.SUCCESS).defList
-        list.sortedByDescending { it.thumbs_down }
-        stateData.value = AppState.SUCCESS(list)
     }
 
     override fun onCleared() {

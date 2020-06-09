@@ -12,8 +12,18 @@ class MainListAdapter(): RecyclerView.Adapter<MainViewHolder>() {
     private var items: MutableList<DefinitionItem> = mutableListOf()
 
     fun updateDefinitions(defs: MutableList<DefinitionItem>) {
-        this.items.clear()
-        this.items = defs
+        items.clear()
+        items = defs
+        notifyDataSetChanged()
+    }
+
+    fun sortUp() {
+        items = items.sortedByDescending { it.thumbs_up } as MutableList<DefinitionItem>
+        notifyDataSetChanged()
+    }
+
+    fun sortDown() {
+        items = items.sortedByDescending { it.thumbs_down } as MutableList<DefinitionItem>
         notifyDataSetChanged()
     }
 
