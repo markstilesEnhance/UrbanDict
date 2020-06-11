@@ -5,15 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.urbandict.R
 import com.example.urbandict.model.DefinitionItem
-import com.example.urbandict.model.UrbanDictionaryResponse
 
-class MainListAdapter(): RecyclerView.Adapter<MainViewHolder>() {
+class MainListAdapter : RecyclerView.Adapter<MainViewHolder>() {
 
     private var items: MutableList<DefinitionItem> = mutableListOf()
 
     fun updateDefinitions(defs: MutableList<DefinitionItem>) {
-        items.clear()
-        items = defs
+        this.items = defs
         notifyDataSetChanged()
     }
 

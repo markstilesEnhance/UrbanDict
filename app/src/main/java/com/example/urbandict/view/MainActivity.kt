@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.urbandict.R
@@ -54,14 +55,20 @@ class MainActivity : AppCompatActivity() {
         search_button.setOnClickListener {
             val searchTerm: String = search_term.text.toString()
             viewModel.getDefinitions(searchTerm)
+            sort_up_button.setBackgroundColor(255255255)
+            sort_down_button.setBackgroundColor(255255255)
         }
 
         sort_up_button.setOnClickListener {
             sortByThumbsUp()
+            it.setBackgroundColor(getColor(R.color.colorAccent))
+            sort_down_button.setBackgroundColor(255255255)
         }
 
         sort_down_button.setOnClickListener {
             sortByThumbsDown()
+            it.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
+            sort_up_button.setBackgroundColor(255255255)
         }
     }
 
