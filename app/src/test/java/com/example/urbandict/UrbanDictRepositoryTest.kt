@@ -45,13 +45,13 @@ class UrbanDictRepositoryTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         classUnderTest = UrbanDictRepository(database, service)
+        Mockito.`when`(database.defsDao()).thenReturn(dao)
         io.reactivex.android.plugins.RxAndroidPlugins
             .setInitMainThreadSchedulerHandler{scheduler -> Schedulers.trampoline()}
     }
 
     @Test
     fun testFoundInDB() {
-        Mockito.`when`(database.defsDao()).thenReturn(dao)
         Mockito.`when`(database.defsDao().getDefinitions("A term"))
             .thenReturn(Single.just(testData))
         Mockito.`when`(service.getDefinitions("A term"))
@@ -65,7 +65,6 @@ class UrbanDictRepositoryTest {
 
     @Test
     fun testNotFoundInDB() {
-        Mockito.`when`(database.defsDao()).thenReturn(dao)
         Mockito.`when`(database.defsDao().getDefinitions("A term"))
             .thenReturn(Single.just(mutableListOf()))
         Mockito.`when`(service.getDefinitions("A term"))

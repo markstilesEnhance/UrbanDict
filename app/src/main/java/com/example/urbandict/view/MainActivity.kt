@@ -1,21 +1,18 @@
 package com.example.urbandict.view
 
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.urbandict.R
 import com.example.urbandict.di.UrbanApplication
 import com.example.urbandict.model.DefinitionItem
-import com.example.urbandict.model.UrbanDictionaryResponse
-import com.example.urbandict.model.network.UrbanDictRepository
 import com.example.urbandict.viewmodel.MainViewModel
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.definitions_item.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +20,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MainViewModel
     private var adapter = MainListAdapter()
+
+    @Parcelize
+    enum class SortDirection : Parcelable {
+        UP, DOWN, NONE
+    }
+
+    private var sortMode: SortDirection = SortDirection.NONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         UrbanApplication.urbanComponent.inject(this)
@@ -48,27 +52,48 @@ class MainActivity : AppCompatActivity() {
                     sort_down_button.visibility = View.VISIBLE
                     sort_up_button.visibility = View.VISIBLE
                     displayDefinitions(appState.defList)
+                    if(sortMode == SortDirection.UP) sortByThumbsUp()
+                    else if(sortMode == SortDirection.DOWN) sortByThumbsDown()
                 }
             }
         })
 
         search_button.setOnClickListener {
             val searchTerm: String = search_term.text.toString()
-            viewModel.getDefinitions(searchTerm)
+            sortMode = SortDirection.NONE
             sort_up_button.setBackgroundColor(255255255)
             sort_down_button.setBackgroundColor(255255255)
+            viewModel.getDefinitions(searchTerm)
         }
 
         sort_up_button.setOnClickListener {
             sortByThumbsUp()
-            it.setBackgroundColor(getColor(R.color.colorAccent))
-            sort_down_button.setBackgroundColor(255255255)
         }
 
         sort_down_button.setOnClickListener {
             sortByThumbsDown()
-            it.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("term", search_term.text.toString())
+        outState.putParcelable("sort", sortMode)
+        if(sort_up_button.visibility == View.VISIBLE) {
+            outState.putInt("hasSearched", 1)
+        } else {
+            outState.putInt("hasSearched", 0)
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        search_term.setText(savedInstanceState.getString("term"))
+        sortMode = savedInstanceState.getParcelable("sort") ?: SortDirection.NONE
+        if(savedInstanceState.getInt("hasSearched") == 1) {
             sort_up_button.setBackgroundColor(255255255)
+            sort_down_button.setBackgroundColor(255255255)
+            viewModel.getDefinitions(search_term.text.toString())
         }
     }
 
@@ -78,10 +103,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun sortByThumbsUp() {
         adapter.sortUp()
+        sortMode = SortDirection.UP
+        sort_up_button.setBackgroundColor(getColor(R.color.colorAccent))
+        sort_down_button.setBackgroundColor(255255255)
     }
 
     private fun sortByThumbsDown() {
         adapter.sortDown()
+        sortMode = SortDirection.DOWN
+        sort_down_button.setBackgroundColor(getColor(R.color.colorAccent))
+        sort_up_button.setBackgroundColor(255255255)
     }
 
 }

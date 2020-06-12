@@ -2,7 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_marginTop="0dp"
+    android:background="@color/colorBackgroundLight">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -16,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/term_placeholder"
         android:textColor="@color/colorPrimary"
         android:textSize="36sp"
@@ -27,11 +29,11 @@
         android:id="@+id/up_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:contentDescription="@string/thumbs_up_desc"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="@id/term"
         app:layout_constraintTop_toBottomOf="@id/definition"
-        app:srcCompat="@drawable/ic_thumb_up"
-        android:contentDescription="@string/thumbs_up_desc" />
+        app:srcCompat="@drawable/ic_thumb_up" />
 
     <TextView
         android:id="@+id/up_count"
@@ -39,20 +41,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/up_count_placeholder"
+        android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@id/up_image"
-        app:layout_constraintTop_toBottomOf="@id/definition"/>
+        app:layout_constraintTop_toBottomOf="@id/definition" />
 
     <ImageView
         android:id="@+id/down_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:scaleType="centerInside"
         android:layout_marginStart="8dp"
+        android:contentDescription="@string/thumbs_down_desc"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/definition"
-        app:srcCompat="@drawable/ic_thumb_down"
-        android:contentDescription="@string/thumbs_down_desc" />
+        app:srcCompat="@drawable/ic_thumb_down" />
 
     <TextView
         android:id="@+id/down_count"
@@ -60,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/down_count_placeholder"
+        android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@id/down_image"
         app:layout_constraintTop_toBottomOf="@id/definition" />
@@ -72,6 +76,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/definition_placeholder"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/term" />
