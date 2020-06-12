@@ -34,14 +34,14 @@ class MainActivityTest {
     @Captor
     private lateinit var stateObserverCaptor: ArgumentCaptor<Observer<MainViewModel.AppState>>
 
-   @Rule
+    @Rule
     @JvmField
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
     @Before
     fun setup() {
 
-        //MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.initMocks(this)
 
         activityController = Robolectric.buildActivity(MainActivity::class.java)
         activity = activityController.get()
@@ -49,8 +49,6 @@ class MainActivityTest {
         activityController.create()
         activity.viewModel = viewModel
         activityController.start()
-
-        Mockito.verify(stateData).observe(ArgumentMatchers.any(LifecycleOwner::class.java), stateObserverCaptor.capture())
     }
 
     @Test
