@@ -23,7 +23,6 @@ class MainViewModel @Inject constructor(private val repo: UrbanDictRepository): 
 
     private val disposable = CompositeDisposable()
     private val stateData = MutableLiveData<AppState>()
-    val sortedStateData = MediatorLiveData<AppState>()
 
     fun getState(): LiveData<AppState> {
         return stateData

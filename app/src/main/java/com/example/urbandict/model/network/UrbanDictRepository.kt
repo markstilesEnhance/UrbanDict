@@ -1,10 +1,7 @@
 package com.example.urbandict.model.network
 
-import android.content.Context
 import com.example.urbandict.model.DefinitionItem
-import com.example.urbandict.model.UrbanDictionaryResponse
 import com.example.urbandict.model.db.UrbanDictDB
-import com.example.urbandict.model.network.ApiClient.client
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
