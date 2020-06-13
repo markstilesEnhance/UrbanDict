@@ -7,4 +7,5 @@
     <color name="colorAccentDark">#00CA1d</color>
     <color name="colorAccentLight">#6FFF89</color>
     <color name="colorBackgroundLight">#A6FFBA</color>
+    <color name="colorBlack">#000000</color>
 </resources>

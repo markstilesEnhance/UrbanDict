@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(private val repo: UrbanDictRepository): 
                 .subscribe({
                     stateData.value = AppState.SUCCESS(it)
                 },{
-                    stateData.value = AppState.ERROR(it.message!!)
+                    stateData.value = it.message?.let { err -> AppState.ERROR(err) }
                 })
         )
     }

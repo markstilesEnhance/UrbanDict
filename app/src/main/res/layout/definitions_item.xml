@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:layout_marginTop="0dp"
+    android:layout_margin="@dimen/margin_standard"
+    android:layout_marginTop="@dimen/margin_zero"
     android:background="@color/colorBackgroundLight">
 
     <androidx.constraintlayout.widget.Guideline
@@ -18,17 +18,17 @@
         android:id="@+id/term"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_standard"
         android:text="@string/term_placeholder"
         android:textColor="@color/colorPrimary"
-        android:textSize="36sp"
+        android:textSize="@dimen/text_large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/up_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/image_size_square"
+        android:layout_height="@dimen/image_size_square"
         android:contentDescription="@string/thumbs_up_desc"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="@id/term"
@@ -39,18 +39,18 @@
         android:id="@+id/up_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_standard"
         android:text="@string/up_count_placeholder"
-        android:textColor="#000000"
-        android:textSize="36sp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_large"
         app:layout_constraintStart_toEndOf="@id/up_image"
         app:layout_constraintTop_toBottomOf="@id/definition" />
 
     <ImageView
         android:id="@+id/down_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="@dimen/image_size_square"
+        android:layout_height="@dimen/image_size_square"
+        android:layout_marginStart="@dimen/margin_standard"
         android:contentDescription="@string/thumbs_down_desc"
         android:scaleType="centerInside"
         app:layout_constraintStart_toEndOf="@id/guideline"
@@ -61,10 +61,10 @@
         android:id="@+id/down_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_standard"
         android:text="@string/down_count_placeholder"
-        android:textColor="#000000"
-        android:textSize="36sp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_large"
         app:layout_constraintStart_toEndOf="@id/down_image"
         app:layout_constraintTop_toBottomOf="@id/definition" />
 
@@ -72,11 +72,11 @@
         android:id="@+id/definition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_standard"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginEnd="@dimen/margin_standard"
         android:text="@string/definition_placeholder"
-        android:textColor="#000000"
+        android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/term" />

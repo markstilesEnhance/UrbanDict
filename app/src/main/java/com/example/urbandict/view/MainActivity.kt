@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var sortMode: SortDirection = SortDirection.NONE
+    private val WHITE = 255255255
 
     override fun onCreate(savedInstanceState: Bundle?) {
         UrbanApplication.urbanComponent.inject(this)
@@ -61,8 +62,8 @@ class MainActivity : AppCompatActivity() {
         search_button.setOnClickListener {
             val searchTerm: String = search_term.text.toString()
             sortMode = SortDirection.NONE
-            sort_up_button.setBackgroundColor(255255255)
-            sort_down_button.setBackgroundColor(255255255)
+            sort_up_button.setBackgroundColor(WHITE)
+            sort_down_button.setBackgroundColor(WHITE)
             viewModel.getDefinitions(searchTerm)
         }
 
@@ -91,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         search_term.setText(savedInstanceState.getString("term"))
         sortMode = savedInstanceState.getParcelable("sort") ?: SortDirection.NONE
         if(savedInstanceState.getInt("hasSearched") == 1) {
-            sort_up_button.setBackgroundColor(255255255)
-            sort_down_button.setBackgroundColor(255255255)
+            sort_up_button.setBackgroundColor(WHITE)
+            sort_down_button.setBackgroundColor(WHITE)
             viewModel.getDefinitions(search_term.text.toString())
         }
     }
@@ -105,14 +106,14 @@ class MainActivity : AppCompatActivity() {
         adapter.sortUp()
         sortMode = SortDirection.UP
         sort_up_button.setBackgroundColor(getColor(R.color.colorAccent))
-        sort_down_button.setBackgroundColor(255255255)
+        sort_down_button.setBackgroundColor(WHITE)
     }
 
     private fun sortByThumbsDown() {
         adapter.sortDown()
         sortMode = SortDirection.DOWN
         sort_down_button.setBackgroundColor(getColor(R.color.colorAccent))
-        sort_up_button.setBackgroundColor(255255255)
+        sort_up_button.setBackgroundColor(WHITE)
     }
 
 }
