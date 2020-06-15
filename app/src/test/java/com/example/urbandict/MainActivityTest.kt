@@ -1,8 +1,6 @@
 package com.example.urbandict
 
 import android.view.View
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.urbandict.view.MainActivity
 import com.example.urbandict.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,12 +24,6 @@ class MainActivityTest {
 
     @Mock
     private lateinit var viewModel: MainViewModel
-
-    @Mock
-    private lateinit var stateData: MutableLiveData<MainViewModel.AppState>
-
-    @Captor
-    private lateinit var stateObserverCaptor: ArgumentCaptor<Observer<MainViewModel.AppState>>
 
     @Rule
     @JvmField
