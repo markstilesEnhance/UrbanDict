@@ -15,10 +15,8 @@ import org.junit.Test
 import org.junit.Assert.assertEquals
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.atLeastOnce
 import org.mockito.Mockito.never
 import org.mockito.MockitoAnnotations
-import rx.android.plugins.RxAndroidPlugins
 
 class UrbanDictRepositoryTest {
 

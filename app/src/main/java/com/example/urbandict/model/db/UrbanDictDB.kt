@@ -11,17 +11,4 @@ abstract class UrbanDictDB: RoomDatabase() {
 
     abstract fun defsDao(): UrbanDictDAO
 
-    companion object{
-
-        @Volatile
-        private var INSTANCE: UrbanDictDB? = null
-
-        fun getInstance(context: Context): UrbanDictDB =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(context, UrbanDictDB::class.java, "UrbanDictionaryDB")
-                    .build().also {
-                        INSTANCE = it
-                    }
-            }
-    }
 }

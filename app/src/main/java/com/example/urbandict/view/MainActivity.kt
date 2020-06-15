@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.getState().observe(this, Observer { appState ->
             when (appState) {
                 is MainViewModel.AppState.LOADING -> {
-                    Toast.makeText(this, "Loading definitions", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.loading), Toast.LENGTH_SHORT).show()
                     sort_down_button.visibility = View.GONE
                     sort_up_button.visibility = View.GONE
                 }
                 is MainViewModel.AppState.ERROR -> {
-                    Toast.makeText(this, "Error: ${appState.error}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.error, appState.error), Toast.LENGTH_SHORT).show()
                     sort_down_button.visibility = View.GONE
                     sort_up_button.visibility = View.GONE
                 }

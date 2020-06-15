@@ -1,7 +1,6 @@
 package com.example.urbandict
 
 import android.view.View
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.urbandict.view.MainActivity

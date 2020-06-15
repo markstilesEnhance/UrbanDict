@@ -1,16 +1,11 @@
 package com.example.urbandict.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.urbandict.model.DefinitionItem
 import com.example.urbandict.model.network.UrbanDictRepository
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.exceptions.UndeliverableException
-import rx.plugins.RxJavaErrorHandler
-import rx.plugins.RxJavaPlugins
-import java.lang.Error
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val repo: UrbanDictRepository): ViewModel() {

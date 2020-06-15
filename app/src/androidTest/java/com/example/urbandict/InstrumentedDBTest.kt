@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.example.urbandict.model.DefinitionItem
-import com.example.urbandict.model.db.UrbanDictDAO
 import com.example.urbandict.model.db.UrbanDictDB
 import org.junit.After
 import org.junit.Assert.assertEquals
